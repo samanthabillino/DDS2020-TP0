@@ -38,7 +38,7 @@ public class TestCalcularValor {
 		organizacionMixta = new Organizacion();
 		organizacionMixta.agregarNuevaOperacion(operacion4);
 		
-		// creo los items
+		// creo los items---------------------------
 		
 		plomeria = new Servicio (1500);
 		gasista = new Servicio (2000);
