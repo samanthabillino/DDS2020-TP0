@@ -2,7 +2,7 @@ package Clases;
 
 public interface DocumentoComercial {
 
-		String idDocumento = new String () ;
+	public double obtenerValorDocumento();
 
 
 }

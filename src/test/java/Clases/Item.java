@@ -4,7 +4,11 @@ public  class Item {
 	
 	public double precio;
 	
-	protected void cambiarPrecio(double precioNuevo) {
+	public Item(double precio) {
+		this.precio = precio;
+	}
+	
+	public void cambiarPrecio(double precioNuevo) {
 		this.precio=precioNuevo;
 
 }

@@ -9,9 +9,14 @@ import Excepciones.operacionCerradaException;
 public class OperacionEgreso {
 
 	public ArrayList <Item> listaItems = new ArrayList<Item>();
-	boolean operacionCerrada; 
+	boolean operacionCerrada=false; 
 	double valorOperacion;
-    DocumentoComercial documentoComercialCorresp;
+    public DocumentoComercial documentoComercialCorresp;
+    
+    public DocumentoComercial getDocumentoComercial()
+    {
+    	return this.documentoComercialCorresp;
+    }
     
     public boolean getOperacionCerrada()
     {
@@ -32,38 +37,55 @@ public class OperacionEgreso {
    {
 	   this.valorOperacion = valor;
    }
-   
-   private void calcularValor ()
+   public void agregarItem(Item nuevoItem)
    {
-	   
+	   this.listaItems.add(nuevoItem);
+   }
+   public void calcularValor () throws operacionCerradaException
+   {
+	   if (!this.getOperacionCerrada())
+	   {
 		   double valor = listaItems.stream().mapToDouble(item->item.getValor()).sum();
 		   this.setValorOperacion(valor);
+	   }
+	   
+	   else
+	   {
+		   throw new operacionCerradaException("La operacion ya se encuentra cerrada, no es posible recalcular el valor total");
+	   }
    }
    
    public void cerrarOperacion () throws operacionCerradaException
    {
 	   if (this.getOperacionCerrada())
 	   {
-		   throw new operacionCerradaException("La operacion ya se encuentra cerrada, no se puede calcular el valor");
+		   throw new operacionCerradaException("La operacion ya se encuentra cerrada");
 	   }
 	   else
 	   {
 		   this.calcularValor();
+		   this.setOperacionCerrada(true);
 	   }
    }
 
-public void generarDocumentoComercial () throws esServicioException 
+public void generarDocumentoComercial () throws esServicioException, operacionCerradaException 
 {
 	if (this.getOperacionCerrada())
 	{
 		if (this.listaItems.stream().anyMatch(item->item.esServicio()))
 		{
 			throw new esServicioException ("Uno o más items de la lista son servicios, por lo cual no se ha podido generar un documento comercial");
+			
 		}
+			
 		else
 		{
 			documentoComercialCorresp = new Remito (this.getValorOperacion());
 		}
+	}
+	else
+	{
+		throw new operacionCerradaException("La operacion aun no se encuentra cerrada, por lo cual no es posible generar un documento comercial");
 	}
 }
 }

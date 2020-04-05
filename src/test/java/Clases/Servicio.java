@@ -2,12 +2,16 @@ package Clases;
 
 public class Servicio extends Item {
 
-	double precioServicio;
-	
+	public Servicio (double precio)
+	{
+		super(precio);
+	}
 	@Override
 	public boolean esServicio() {
 		return true;
 	}
+	
+	
 
 
 }
