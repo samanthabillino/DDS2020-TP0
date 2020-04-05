@@ -18,10 +18,10 @@ public class TestCalcularValor {
 	private Organizacion organizacionSoloServicio, organizacionSoloArticulos, organizacionMixta;
 	private OperacionEgreso operacion1, operacion2, operacion3, operacion4;
 	private Servicio plomeria, gasista, electricidad, limpieza, lePidioSuServicio;
-	private Articulo mrMusculo,pinza,colaVinilica,tornillo,linterna,escoba;
+	private Articulo escoba;
 
 	@Before
-	public void crearNuevaOperacion ()
+	public void crearNuevaOperacion () throws operacionCerradaException
 	{
 		// Inicio las organizaciones y creo ya operaciones para manejar despues
 		organizacionSoloServicio = new Organizacion ();
@@ -46,11 +46,7 @@ public class TestCalcularValor {
 		limpieza = new Servicio (150);
 		lePidioSuServicio = new Servicio (10000);
 	
-		mrMusculo = new Articulo (300);
-		pinza = new Articulo (400);
-		colaVinilica = new Articulo (155);
-		tornillo = new Articulo (20);
-		linterna = new Articulo (400);
+
 		escoba = new Articulo (250);
 		
 		operacion1.agregarItem(plomeria);

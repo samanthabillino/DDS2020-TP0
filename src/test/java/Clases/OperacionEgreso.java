@@ -37,9 +37,18 @@ public class OperacionEgreso {
    {
 	   this.valorOperacion = valor;
    }
-   public void agregarItem(Item nuevoItem)
+   public void agregarItem(Item nuevoItem) throws operacionCerradaException
+   
    {
+	   if(!this.getOperacionCerrada())
+	   {
 	   this.listaItems.add(nuevoItem);
+	   }
+	   
+	   else 
+	   {
+		   throw new operacionCerradaException("La operacion se encuentra cerrada, no se pueden ingresar más items");
+	   }
    }
    public void calcularValor () throws operacionCerradaException
    {
