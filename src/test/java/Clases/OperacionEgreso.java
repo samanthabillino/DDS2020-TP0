@@ -8,7 +8,6 @@ import Excepciones.operacionCerradaException;
 
 public class OperacionEgreso {
 
-	//hola
 	public ArrayList <Item> listaItems = new ArrayList<Item>();
 	boolean operacionCerrada; 
 	double valorOperacion;
